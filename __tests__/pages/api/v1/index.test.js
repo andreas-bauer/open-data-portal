@@ -3,7 +3,7 @@ import { performance } from "perf_hooks";
 const MAX_QUERYTIME_MS = 100;
 
 import handler from 'src/pages/api/v1';
-import { getConnectionPool, endConnection } from 'src/lib/database';
+import { getConnectionPool, endConnection } from 'src/db/db-connection';
 import {
     STATUS_OK,
     STATUS_BAD_REQUEST, STATUS_METHOD_NOT_ALLOWED

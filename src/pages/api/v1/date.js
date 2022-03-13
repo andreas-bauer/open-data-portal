@@ -3,7 +3,7 @@
 import mysql from "mysql2/promise"
 import moment from "moment"
 
-import { getConnectionPool } from "src/lib/database";
+import { getConnectionPool } from "src/db/db-connection";
 
 import {
     STATUS_OK,

@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise';
 
-import { getConnectionPool } from "src/lib/database";
+import { getConnectionPool } from "src/db/db-connection";
 import {
     STATUS_OK,
     STATUS_METHOD_NOT_ALLOWED,
