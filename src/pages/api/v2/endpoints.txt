@@ -1,0 +1,19 @@
+GET:  /measurements                          -> return all measurements
+POST: /measurements                          -> uploads a new measurement
+GET:  /measurements/[id]                     -> return measurement with given id
+GET:  /measurements/by_location/[id]         -> return measurements for location with given id
+GET:  /measurements/by_location/?name=[name]-> return measurements from named location
+GET:  /measurements/by_location/?geo=[geo]   -> return measurements matching given geo-information
+GET:  /measurements/by_sensor_id/[id]        -> return measurements taken by sensor with given id
+GET:  /measurements/by_sensor_name/[name]    -> return measurements from sensor with given name
+
+GET:  /locations                             -> return all locations
+GET:  /locations/[id]                        -> return location with given id
+GET:  /locations/by_name/[name]              -> find location by name
+
+GET:  /sensors                               -> return all sensors
+GET:  /sensors/[id]                          -> return sensor with given id
+GET:  /sensors/by_location_id/[id]           -> return sensors for location with given id
+GET:  /sensors/by_location_name/[name]       -> return sensors for named location
+GET:  /sensors/by_location_geo/[geo]         -> return sensors for a given geolocation
+
