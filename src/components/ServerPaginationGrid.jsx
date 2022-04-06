@@ -2,6 +2,7 @@ import { useContext, useMemo, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import LinearProgress from "@mui/material/LinearProgress";
 
+import DateRangeSelector from "src/components/DateRangeSelector";
 import { useMeasurements } from "../lib/hooks/swr-extensions";
 import { PreferenceContext } from "../pages/_app";
 import {fetcher, urlWithParams} from "../lib/utilityFunctions";
@@ -13,6 +14,14 @@ const ServerPaginationGrid = () => {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(20);
 
+  /* Define Start-date and End-date, which can be modified in the grid.*/
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+
+  //let idk = new Date('2022-01-01');
+  //let idk2 = new Date('2022-01-08');
+
   /* Get correct url for fetching the filtered data */
   const { preferences } = useContext(PreferenceContext);
   const url = useMemo(() => urlWithParams(endpoint, {
@@ -21,8 +30,10 @@ const ServerPaginationGrid = () => {
     location_name: preferences.location.symbol,
     page: page + 1, /* mui grid starts indexing at 0, api at 1 */
     page_size: pageSize,
+    start_date: startDate.toISOString().split('T')[0],
+    end_date: endDate.toISOString().split('T')[0],
   }), [preferences, page, pageSize]);
-
+  
   const { measurements, rowCount, isLoading } = useMeasurements(url, fetcher);
 
   const gridColumns = useMemo(() => [
@@ -49,6 +60,10 @@ const ServerPaginationGrid = () => {
 
   return (
     <div style={{ height: 750, width: "95%", maxWidth: 1000 }}>
+      {startDate.toISOString().split('T')[0]}
+      <br></br>
+      {endDate.toISOString().split('T')[0]}<br></br>
+      {url}
       <DataGrid
         rows={measurements}
         columns={gridColumns}
@@ -62,6 +77,11 @@ const ServerPaginationGrid = () => {
         rowsPerPageOptions={[5, 10, 20, 50, 100]}
         onPageChange={page => setPage(page)}
         onPageSizeChange={pageSize => setPageSize(pageSize)}
+      />
+
+      <DateRangeSelector
+          startDate={startDate} setStartDate={setStartDate}
+          endDate={endDate} setEndDate={setEndDate}
       />
     </div>
   );

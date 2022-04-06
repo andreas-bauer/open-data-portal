@@ -11,7 +11,7 @@ export default function App() {
       <div style={{ width: "95%", maxWidth: 1000 }}>
         <h2>Explore the data on your own</h2>
         <p>Change the units using the preference modal from the navbar. </p>
-        <ServerPaginationGrid/>
+        <ServerPaginationGrid/><br></br><br></br> <br></br> <br></br> <br></br>
       </div>
 
       <Summary/>
