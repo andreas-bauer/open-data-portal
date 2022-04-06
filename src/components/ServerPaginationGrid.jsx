@@ -32,7 +32,7 @@ const ServerPaginationGrid = () => {
     page_size: pageSize,
     start_date: startDate.toISOString().split('T')[0],
     end_date: endDate.toISOString().split('T')[0],
-  }), [preferences, page, pageSize]);
+  }), [preferences, page, pageSize, startDate, endDate]);
   
   const { measurements, rowCount, isLoading } = useMeasurements(url, fetcher);
 
