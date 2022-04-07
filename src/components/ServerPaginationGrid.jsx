@@ -6,6 +6,7 @@ import DateRangeSelector from "src/components/DateRangeSelector";
 import { useMeasurements } from "../lib/hooks/swr-extensions";
 import { PreferenceContext } from "../pages/_app";
 import {fetcher, urlWithParams} from "../lib/utilityFunctions";
+import Pagination from '@mui/material/Pagination';
 
 const endpoint = "http://localhost:3000/api/v2/data?";
 
@@ -58,6 +59,18 @@ const ServerPaginationGrid = () => {
     { field: "latitude", headerName: "Latitude", width: 150},
   ], [preferences]);
 
+  const handleChange = (event, value) => {
+    setPage(value - 1);
+  };
+
+  const getPageCount = () => {
+    if((rowCount % pageSize) == 0){
+      return rowCount / pageSize
+    }
+    else{
+      return Math.ceil(rowCount / pageSize)
+    }
+  }
   return (
     <div style={{ height: 750, width: "95%", maxWidth: 1000 }}>
       {startDate.toISOString().split('T')[0]}
@@ -77,6 +90,12 @@ const ServerPaginationGrid = () => {
         rowsPerPageOptions={[5, 10, 20, 50, 100]}
         onPageChange={page => setPage(page)}
         onPageSizeChange={pageSize => setPageSize(pageSize)}
+      />
+      <Pagination
+      count={getPageCount()} 
+      showFirstButton showLastButton 
+      page = {page + 1} //Since Datagrid indexes at 0
+      onChange={handleChange}
       />
 
       <DateRangeSelector
