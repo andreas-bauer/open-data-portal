@@ -22,7 +22,7 @@ const DATE_RANGES = [
   { label: "this year", startDate: startOfYear(new Date()), endDate: endOfDay(NOW) },
   { label: "1 year", startDate: sub(new Date(), { years: 1 }), endDate: endOfDay(NOW) },
   { label: "3 years", startDate: sub(new Date(), { years: 3 }), endDate: endOfDay(NOW) },
-  { label: "Max", startDate: new Date(1), endDate: endOfDay(NOW) },
+  { label: "Max", startDate: new Date(86400000), endDate: endOfDay(NOW) },
   { label: "Custom", startDate: startOfDay(new Date()), endDate: endOfDay(NOW) },
 ];
 
